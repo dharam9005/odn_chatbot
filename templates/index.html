@@ -1,0 +1,920 @@
+
+https://odnsystems.com. this is the website and i want to make a chatbot for them by using the webscraping and chatbot should based on the gpt so i want u to create give scraping and the full chatbot code and the steps that how to run them. and i want the ui of the chatbot will look like that it is part of the website and more profincale
+
+20:28
+
+Architected web scraper, Flask backend, and professional chatbot UI components
+Architected web scraper, Flask backend, and professional chatbot UI components
+Now I have everything I need. Let me build the full solution — scraper, Flask backend, and a premium chatbot UI that matches ODN Systems' navy-blue tech aesthetic.
+
+
+Created 5 files, ran a command
+Created 5 files, ran a command
+Now let's copy all files to the output directory:
+
+
+Ran a command, read a file
+Ran a command, read a file
+Here's everything you need — 5 files, fully ready to run. Here's a quick summary:
+
+📦 What you got
+File	Purpose
+scraper.py	Crawls all pages of odnsystems.com → saves knowledge_base.json
+app.py	Flask server — feeds KB content to GPT as system context
+templates/index.html	Professional dark-navy chatbot UI matching ODN Systems branding
+requirements.txt	All Python dependencies
+README.md	Full step-by-step guide
+⚡ Quick Start (3 commands)
+bash
+pip install -r requirements.txt     # install dependencies
+python scraper.py                    # scrape the website
+python app.py                        # start the server
+Then open http://localhost:5000 — done.
+
+🔑 One thing to configure
+In app.py line 13, replace with your OpenAI key:
+
+python
+OPENAI_API_KEY = "sk-your-real-key-here"
+Or set it as an environment variable: export OPENAI_API_KEY=sk-...
+
+The chatbot uses GPT-4o-mini by default (fast + cheap). Change to gpt-4o in app.py for higher quality answers. The README also includes how to embed it as a floating widget on the real ODN Systems website.
+
+Readme
+Document · MD 
+Scraper
+PY 
+App
+PY 
+Index
+Code · HTML 
+Requirements
+TXT 
+
+1774370109049_Archive.zip
+zip
+
+Screenshot 2026-03-24 at 10.03.15 PM.png
+Screenshot 2026-03-24 at 10.07.39 PM.png
+Serving Flask app 'app'
+Debug mode: on WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+Running on http://127.0.0.1:5000 Press CTRL+C to quit
+Restarting with stat ✅ Loaded knowledge base: 42017 chars, 20 pages 🤖 ODN Systems Chatbot Server ======================================== Model : gpt-4o-mini Port : 5000 URL : http://localhost:5000
+Debugger is active!
+Debugger PIN: 582-752-397 127.0.0.1 - - [24/Mar/2026 22:02:09] "GET / HTTP/1.1" 200 - 127.0.0.1 - - [24/Mar/2026 22:02:09] "GET /favicon.ico HTTP/1.1" 404 - OpenAI error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your-ope************here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}} 127.0.0.1 - - [24/Mar/2026 22:02:24] "POST /api/chat HTTP/1.1" 200 - OpenAI error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your-ope************here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}} 127.0.0.1 - - [24/Mar/2026 22:03:00] "POST /api/chat HTTP/1.1" 200 - OpenAI error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your-ope************here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}} 127.0.0.1 - - [24/Mar/2026 22:03:11] "POST /api/chat HTTP/1.1" 200 - ^C% (venv) dharmander@dharmanders-MacBook-Air odn_chatbot % as i see it is not connected to the gpt and not responding like the chatbot that i actualy what so i want u to modify this and then so it can work and in one photo i have share the structue of the project so tell what to add new thing and before modifing this if u want anything then first ask that and then modify it and i aslo want to change the ui of this as it is not looking good
+Show more
+23:30
+
+Deciphered Flask server logs and chatbot API authentication issues
+Deciphered Flask server logs and chatbot API authentication issues
+I can see exactly what's happening — the error is clear: the OpenAI API key is still the placeholder (your-ope************here). Before I modify anything, let me ask a few quick questions:
+
+While you answer — here's what I already know needs fixing from your screenshots:
+
+🔴 The API key issue — app.py line 13 still says "your-openai-api-key-here". This is 100% why every message returns the fallback error response. Once you provide a real key, the bot will actually work.
+
+Things I'll fix in the code regardless:
+
+Better error message (currently shows the phone number fallback even for API key errors — confusing)
+Add a .env file support so you never hard-code keys again
+Improve the app.py to show clearer startup warnings if the key is missing
+Once you answer the questions above, I'll update all the files! 🚀
+
+Q: Do you have your OpenAI API key ready to add?
+A: No, help me get one
+
+Q: What UI style do you want for the chatbot?
+A: Match ODN website colors exactly (blue/white)
+
+Q: What was wrong with the current UI? (pick all that apply) (Select all that apply)
+A: Layout feels off, Needs ODN logo/branding, Looks too plain/generic
+
+23:40
+
+Synthesized API setup guidance and ODN-branded UI redesign requirements
+Synthesized API setup guidance and ODN-branded UI redesign requirements
+Good, I have everything I need. Now let me build the full updated solution — API key setup, fixed app.py, and a completely new UI matching ODN's blue/white website style.
+
+
+Created 3 files, ran a command
+Created 3 files, ran a command
+Now the big one — a completely redesigned UI matching ODN's blue/white professional website style:
+
+
+Created 2 files, ran a command, read a file
+Created 2 files, ran a command, read a file
+Here's everything fixed and upgraded. Here's exactly what changed and what to do now:
+
+🔴 The Real Problem (and the Fix)
+The bot was replying with the error fallback message every time because the API key was still the placeholder text. The new app.py now:
+
+Reads the key from a .env file (much safer)
+Refuses to even start if the key is missing/wrong — so you know immediately
+Shows specific error messages for wrong key vs. rate limit vs. network issues
+⚡ What to do RIGHT NOW (3 steps)
+1. Replace these 2 files in your project:
+
+app.py → new version (better error handling + dotenv)
+templates/index.html → completely new blue/white UI
+2. Create your .env file:
+
+Rename .env.example → .env
+Get your key at https://platform.openai.com/api-keys
+Paste it inside: OPENAI_API_KEY=sk-proj-your-real-key
+3. Run once then start:
+
+bash
+pip install -r requirements.txt   ← adds python-dotenv
+python app.py                      ← chatbot works now
+🎨 What's new in the UI
+Before	After
+Dark navy/black background	Clean white with ODN blue header
+Generic look	ODN branding, colors matching the website
+Plain bubbles	Styled message groups with sender labels
+No follow-ups	Contextual quick-reply chips after each answer
+Crowded layout	Proper spacing, professional card-style welcome
+How to run
+Document · MD 
+App
+PY 
+Index
+Code · HTML 
+.env
+EXAMPLE 
+Requirements
+TXT 
+
+
+
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+Index · HTML
+Copy
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ODN Systems – AI Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+ 
+/* ═══════════════════════════════════════════════════
+   RESET & VARIABLES
+═══════════════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+ 
+:root {
+  /* ODN Brand Colors — pulled from odnsystems.com */
+  --blue-dark:    #0b2d6e;
+  --blue-mid:     #1550b8;
+  --blue-bright:  #1a6ef5;
+  --blue-light:   #e8f0fe;
+  --blue-xlight:  #f0f5ff;
+ 
+  --white:        #ffffff;
+  --gray-50:      #f8fafc;
+  --gray-100:     #f1f5f9;
+  --gray-200:     #e2e8f0;
+  --gray-400:     #94a3b8;
+  --gray-600:     #475569;
+  --gray-800:     #1e293b;
+ 
+  --text-main:    #0f1e40;
+  --text-sub:     #4a5878;
+  --text-muted:   #8898aa;
+ 
+  --shadow-sm:  0 1px 3px rgba(11,45,110,.08), 0 1px 2px rgba(11,45,110,.04);
+  --shadow-md:  0 4px 16px rgba(11,45,110,.10), 0 2px 6px rgba(11,45,110,.06);
+  --shadow-lg:  0 12px 40px rgba(11,45,110,.14), 0 4px 12px rgba(11,45,110,.08);
+ 
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  20px;
+ 
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+}
+ 
+html, body {
+  height: 100%;
+  background: var(--gray-50);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+ 
+/* ═══════════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════════ */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+}
+ 
+/* ═══════════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════════ */
+.header {
+  background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%);
+  padding: 0 28px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+ 
+/* Subtle grid texture on header */
+.header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+ 
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0 16px;
+  position: relative; z-index: 1;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+ 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+ 
+.brand-logo {
+  width: 48px; height: 48px;
+  background: rgba(255,255,255,.15);
+  border: 1.5px solid rgba(255,255,255,.25);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(8px);
+  flex-shrink: 0;
+}
+ 
+/* ODN Logo SVG */
+.brand-logo svg { width: 28px; height: 28px; }
+ 
+.brand-info h1 {
+  font-size: 17px; font-weight: 700;
+  color: #fff; letter-spacing: -.3px; line-height: 1.25;
+}
+.brand-info p {
+  font-size: 12px; font-weight: 400;
+  color: rgba(255,255,255,.65);
+  letter-spacing: .2px; margin-top: 1px;
+}
+ 
+.header-right {
+  display: flex; align-items: center; gap: 12px;
+}
+ 
+.status-badge {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 30px;
+  padding: 6px 14px 6px 10px;
+  font-size: 12px; font-weight: 500; color: #fff;
+}
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 2px rgba(74,222,128,.25);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(.75); opacity: .6; }
+}
+ 
+/* Sub-header: service strips */
+.header-sub {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 0;
+  position: relative; z-index: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.header-sub::-webkit-scrollbar { display: none; }
+ 
+.service-tag {
+  white-space: nowrap;
+  font-size: 11.5px; font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.1);
+  color: rgba(255,255,255,.85);
+  cursor: pointer;
+  transition: all .2s ease;
+  flex-shrink: 0;
+}
+.service-tag:hover {
+  background: rgba(255,255,255,.22);
+  color: #fff;
+  transform: translateY(-1px);
+}
+ 
+/* ═══════════════════════════════════════════════════
+   CHAT AREA
+═══════════════════════════════════════════════════ */
+.chat-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 28px 12px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  scroll-behavior: smooth;
+}
+ 
+.chat-body::-webkit-scrollbar { width: 5px; }
+.chat-body::-webkit-scrollbar-track { background: transparent; }
+.chat-body::-webkit-scrollbar-thumb {
+  background: var(--gray-200);
+  border-radius: 3px;
+}
+ 
+/* ─── Welcome Card ─────────────────────────────── */
+.welcome-card {
+  background: var(--blue-xlight);
+  border: 1.5px solid #c7d9ff;
+  border-radius: var(--radius-lg);
+  padding: 26px 24px 22px;
+  margin-bottom: 24px;
+  animation: fadeUp .4s ease;
+}
+ 
+.welcome-card-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 12px;
+}
+.welcome-icon {
+  width: 42px; height: 42px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--blue-mid), var(--blue-bright));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(21,80,184,.3);
+}
+.welcome-card h2 {
+  font-size: 16px; font-weight: 700;
+  color: var(--blue-dark); line-height: 1.3;
+}
+.welcome-card h2 span { color: var(--blue-bright); }
+.welcome-card p {
+  font-size: 13.5px; color: var(--text-sub);
+  line-height: 1.65; margin-bottom: 16px;
+}
+ 
+.quick-topics {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.topic-btn {
+  font-size: 12.5px; font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 24px;
+  border: 1.5px solid #b8cfff;
+  background: var(--white);
+  color: var(--blue-mid);
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.topic-btn:hover {
+  background: var(--blue-mid);
+  color: var(--white);
+  border-color: var(--blue-mid);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(21,80,184,.25);
+}
+ 
+/* ─── Messages ─────────────────────────────────── */
+.msg-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 18px;
+  animation: fadeUp .3s cubic-bezier(.22,1,.36,1);
+}
+ 
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ 
+.msg-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+.msg-row.user { flex-direction: row-reverse; }
+ 
+.avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+}
+.avatar.bot {
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue-bright));
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(21,80,184,.3);
+}
+.avatar.user {
+  background: var(--blue-light);
+  color: var(--blue-mid);
+  border: 1.5px solid #c7d9ff;
+}
+ 
+.bubble {
+  max-width: 68%;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.65;
+  font-weight: 400;
+}
+ 
+.msg-row.bot .bubble {
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 18px 18px 18px 4px;
+  color: var(--text-main);
+}
+ 
+.msg-row.user .bubble {
+  background: linear-gradient(135deg, var(--blue-mid) 0%, var(--blue-bright) 100%);
+  color: #fff;
+  border-radius: 18px 18px 4px 18px;
+  box-shadow: 0 4px 14px rgba(21,80,184,.28);
+}
+ 
+/* Sender label */
+.msg-label {
+  font-size: 11px; font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  padding: 0 4px;
+  margin-bottom: 3px;
+}
+.msg-row.user + .msg-label,
+.msg-group.user-group .msg-label {
+  text-align: right;
+}
+ 
+/* ─── Typing indicator ─────────────────────────── */
+.typing-row {
+  display: flex; align-items: flex-end; gap: 10px;
+  margin-bottom: 18px;
+  animation: fadeUp .25s ease;
+}
+.typing-bubble {
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 18px 18px 18px 4px;
+  padding: 13px 18px;
+  display: flex; align-items: center; gap: 5px;
+}
+.typing-bubble span {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--blue-bright);
+  display: block;
+  animation: typeBounce 1.3s ease-in-out infinite;
+}
+.typing-bubble span:nth-child(2) { animation-delay: .15s; }
+.typing-bubble span:nth-child(3) { animation-delay: .30s; }
+@keyframes typeBounce {
+  0%,60%,100% { transform: translateY(0); opacity: .4; }
+  30%          { transform: translateY(-5px); opacity: 1; }
+}
+ 
+/* ─── Divider ──────────────────────────────────── */
+.divider {
+  text-align: center;
+  font-size: 11px; font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: .5px;
+  margin: 8px 0 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.divider::before, .divider::after {
+  content: ''; flex: 1;
+  border-top: 1px solid var(--gray-200);
+}
+ 
+/* ═══════════════════════════════════════════════════
+   QUICK REPLIES (chips shown after bot responds)
+═══════════════════════════════════════════════════ */
+.quick-replies {
+  display: flex; flex-wrap: wrap; gap: 7px;
+  margin: 6px 0 0 42px;
+}
+.qr-chip {
+  font-size: 12.5px; font-weight: 500;
+  padding: 6px 13px;
+  border-radius: 20px;
+  border: 1.5px solid #c7d9ff;
+  background: var(--white);
+  color: var(--blue-mid);
+  cursor: pointer;
+  transition: all .18s;
+}
+.qr-chip:hover {
+  background: var(--blue-light);
+  border-color: var(--blue-bright);
+  color: var(--blue-dark);
+}
+ 
+/* ═══════════════════════════════════════════════════
+   INPUT AREA
+═══════════════════════════════════════════════════ */
+.input-zone {
+  background: var(--white);
+  border-top: 1.5px solid var(--gray-200);
+  padding: 14px 20px 18px;
+  flex-shrink: 0;
+}
+ 
+.input-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 10px 10px 10px 16px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.input-wrapper:focus-within {
+  border-color: var(--blue-bright);
+  box-shadow: 0 0 0 3px rgba(26,110,245,.1);
+  background: var(--white);
+}
+ 
+#msgInput {
+  flex: 1; border: none; outline: none; resize: none;
+  background: transparent;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 400;
+  color: var(--text-main);
+  caret-color: var(--blue-bright);
+  line-height: 1.55;
+  max-height: 120px; min-height: 22px;
+}
+#msgInput::placeholder { color: var(--gray-400); }
+#msgInput::-webkit-scrollbar { display: none; }
+ 
+.send-btn {
+  width: 40px; height: 40px;
+  border-radius: 10px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue-mid), var(--blue-bright));
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(21,80,184,.35);
+  transition: all .2s;
+}
+.send-btn:hover { transform: scale(1.06); box-shadow: 0 6px 18px rgba(21,80,184,.45); }
+.send-btn:active { transform: scale(.95); }
+.send-btn:disabled {
+  background: var(--gray-200); cursor: not-allowed;
+  box-shadow: none; transform: none;
+}
+.send-btn svg { width: 17px; height: 17px; }
+ 
+.input-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 9px; padding: 0 2px;
+}
+.input-hint {
+  font-size: 11.5px; color: var(--text-muted);
+}
+.input-hint kbd {
+  font-family: inherit; font-size: 10.5px;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: 4px; padding: 1px 5px;
+}
+ 
+.powered-by {
+  font-size: 11px; color: var(--text-muted);
+  display: flex; align-items: center; gap: 5px;
+}
+.powered-by::before {
+  content: '';
+  display: inline-block; width: 14px; height: 14px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='10' stroke='%2394a3b8' stroke-width='1.5'/%3E%3Cpath d='M9 12l2 2 4-4' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+ 
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .header { padding: 0 16px; }
+  .chat-body { padding: 20px 16px 8px; }
+  .input-zone { padding: 12px 14px 16px; }
+  .bubble { max-width: 84%; font-size: 13.5px; }
+  .brand-info h1 { font-size: 15px; }
+  .input-footer { display: none; }
+}
+ 
+  </style>
+</head>
+<body>
+ 
+<div class="app">
+ 
+  <!-- ══════════════ HEADER ══════════════ -->
+  <div class="header">
+    <div class="header-top">
+      <div class="brand">
+        <!-- ODN Logo Mark -->
+        <div class="brand-logo">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="6" fill="none"/>
+            <!-- O -->
+            <text x="2" y="23" font-family="Arial Black, sans-serif" font-weight="900" font-size="13" fill="white" letter-spacing="-0.5">ODN</text>
+            <line x1="2" y1="26" x2="30" y2="26" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <h1>ODN Systems</h1>
+          <p>IT Solutions &amp; Services · Greater Noida</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="status-badge">
+          <div class="status-dot"></div>
+          AI Assistant Online
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Service tags -->
+    <div class="header-sub">
+      <div class="service-tag" onclick="sendQuick(this)">Our Services</div>
+      <div class="service-tag" onclick="sendQuick(this)">Cybersecurity</div>
+      <div class="service-tag" onclick="sendQuick(this)">Network Infrastructure</div>
+      <div class="service-tag" onclick="sendQuick(this)">Cloud Solutions</div>
+      <div class="service-tag" onclick="sendQuick(this)">Software Deployment</div>
+      <div class="service-tag" onclick="sendQuick(this)">Data Solutions</div>
+      <div class="service-tag" onclick="sendQuick(this)">Get a Quote</div>
+      <div class="service-tag" onclick="sendQuick(this)">Contact & Hours</div>
+    </div>
+  </div>
+ 
+  <!-- ══════════════ CHAT BODY ══════════════ -->
+  <div class="chat-body" id="chatBody">
+ 
+    <div class="divider">Today</div>
+ 
+    <!-- Welcome card -->
+    <div class="welcome-card">
+      <div class="welcome-card-header">
+        <div class="welcome-icon">🤖</div>
+        <h2>Hello! I'm the <span>ODN Assistant</span></h2>
+      </div>
+      <p>
+        I can help you learn about ODN Systems' services, guide you through our cybersecurity,
+        networking, cloud, and software solutions — or connect you with our team.
+      </p>
+      <div class="quick-topics">
+        <div class="topic-btn" onclick="sendQuick(this)">What does ODN Systems do?</div>
+        <div class="topic-btn" onclick="sendQuick(this)">Security Systems</div>
+        <div class="topic-btn" onclick="sendQuick(this)">IT Consulting</div>
+        <div class="topic-btn" onclick="sendQuick(this)">Support Plans</div>
+        <div class="topic-btn" onclick="sendQuick(this)">Contact the team</div>
+      </div>
+    </div>
+ 
+  </div>
+ 
+  <!-- ══════════════ INPUT ══════════════ -->
+  <div class="input-zone">
+    <div class="input-wrapper">
+      <textarea
+        id="msgInput"
+        placeholder="Ask anything about ODN Systems…"
+        rows="1"
+        autocomplete="off"
+      ></textarea>
+      <button class="send-btn" id="sendBtn" onclick="sendMessage()" title="Send message">
+        <!-- Send icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+    <div class="input-footer">
+      <span class="input-hint">Press <kbd>Enter</kbd> to send · <kbd>Shift+Enter</kbd> for new line</span>
+      <span class="powered-by">Powered by GPT-4o · ODN Systems</span>
+    </div>
+  </div>
+ 
+</div>
+ 
+<!-- ══════════════ SCRIPT ══════════════ -->
+<script>
+  const API = "/api/chat";
+  let history = [];
+  let busy    = false;
+ 
+  const chatBody = document.getElementById("chatBody");
+  const msgInput = document.getElementById("msgInput");
+  const sendBtn  = document.getElementById("sendBtn");
+ 
+  // Quick reply sets shown after specific bot answers
+  const FOLLOW_UPS = {
+    services:  ["Cybersecurity details", "Network setup", "Cloud services", "Software deployment"],
+    contact:   ["Working hours", "Office address", "Get a quote"],
+    general:   ["Our Services", "Contact the team", "Get a Quote"],
+  };
+ 
+  /* ─── Auto-grow textarea ────────────────────── */
+  msgInput.addEventListener("input", () => {
+    msgInput.style.height = "auto";
+    msgInput.style.height = Math.min(msgInput.scrollHeight, 120) + "px";
+  });
+ 
+  /* ─── Enter to send ─────────────────────────── */
+  msgInput.addEventListener("keydown", e => {
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  });
+ 
+  /* ─── Helpers ───────────────────────────────── */
+  function scrollDown() {
+    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+  }
+ 
+  function sendQuick(el) {
+    msgInput.value = el.textContent.trim();
+    sendMessage();
+  }
+ 
+  function formatMsg(text) {
+    return text
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*(.*?)\*/g, "<em>$1</em>")
+      .replace(/(https?:\/\/[^\s<]+)/g,
+        '<a href="$1" target="_blank" style="color:var(--blue-bright);text-decoration:underline">$1</a>')
+      .replace(/\n/g, "<br>");
+  }
+ 
+  /* ─── Add message bubble ────────────────────── */
+  function addBubble(role, text) {
+    const group = document.createElement("div");
+    group.className = `msg-group ${role === "user" ? "user-group" : ""}`;
+ 
+    // Label
+    const label = document.createElement("div");
+    label.className = "msg-label";
+    label.style.textAlign = role === "user" ? "right" : "left";
+    label.textContent = role === "user" ? "You" : "ODN Assistant";
+    group.appendChild(label);
+ 
+    // Row with avatar + bubble
+    const row = document.createElement("div");
+    row.className = `msg-row ${role}`;
+ 
+    const av = document.createElement("div");
+    av.className = `avatar ${role}`;
+    av.textContent = role === "user" ? "U" : "AI";
+ 
+    const bub = document.createElement("div");
+    bub.className = "bubble";
+    bub.innerHTML = formatMsg(text);
+ 
+    row.appendChild(av);
+    row.appendChild(bub);
+    group.appendChild(row);
+    chatBody.appendChild(group);
+ 
+    scrollDown();
+    return group;
+  }
+ 
+  /* ─── Add quick replies after bot message ─── */
+  function addQuickReplies(chips) {
+    const wrap = document.createElement("div");
+    wrap.className = "quick-replies";
+    chips.forEach(label => {
+      const c = document.createElement("div");
+      c.className = "qr-chip";
+      c.textContent = label;
+      c.onclick = () => {
+        msgInput.value = label;
+        sendMessage();
+        wrap.remove();
+      };
+      wrap.appendChild(c);
+    });
+    chatBody.appendChild(wrap);
+    scrollDown();
+  }
+ 
+  /* ─── Typing indicator ──────────────────────── */
+  function showTyping() {
+    const row = document.createElement("div");
+    row.className = "typing-row"; row.id = "typingRow";
+ 
+    const av = document.createElement("div");
+    av.className = "avatar bot"; av.textContent = "AI";
+ 
+    const bub = document.createElement("div");
+    bub.className = "typing-bubble";
+    bub.innerHTML = "<span></span><span></span><span></span>";
+ 
+    row.appendChild(av); row.appendChild(bub);
+    chatBody.appendChild(row);
+    scrollDown();
+  }
+ 
+  function hideTyping() {
+    const el = document.getElementById("typingRow");
+    if (el) el.remove();
+  }
+ 
+  /* ─── Decide follow-up chips ────────────────── */
+  function pickFollowUps(text) {
+    const t = text.toLowerCase();
+    if (t.includes("service") || t.includes("offer") || t.includes("cybersecurity"))
+      return FOLLOW_UPS.services;
+    if (t.includes("contact") || t.includes("phone") || t.includes("address") || t.includes("hour"))
+      return FOLLOW_UPS.contact;
+    return FOLLOW_UPS.general;
+  }
+ 
+  /* ─── Main send function ─────────────────────── */
+  async function sendMessage() {
+    if (busy) return;
+    const text = msgInput.value.trim();
+    if (!text) return;
+ 
+    // Reset input
+    msgInput.value = "";
+    msgInput.style.height = "auto";
+ 
+    // Show user message
+    addBubble("user", text);
+    history.push({ role: "user", content: text });
+ 
+    // Show typing
+    busy = true;
+    sendBtn.disabled = true;
+    showTyping();
+ 
+    try {
+      const res = await fetch(API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, history: history.slice(-12) }),
+      });
+ 
+      const data = await res.json();
+      hideTyping();
+ 
+      const reply = data.reply || "Sorry, I couldn't get a response. Please try again.";
+      addBubble("bot", reply);
+      history.push({ role: "assistant", content: reply });
+ 
+      // Show contextual follow-up chips
+      addQuickReplies(pickFollowUps(reply));
+ 
+    } catch (err) {
+      hideTyping();
+      addBubble("bot", "⚠️ Connection error. Please make sure the server is running, then try again.");
+      console.error(err);
+    }
+ 
+    busy = false;
+    sendBtn.disabled = false;
+    msgInput.focus();
+  }
+ 
+  // Focus input on load
+  window.addEventListener("load", () => msgInput.focus());
+</script>
+ 
+</body>
+</html>
+ 
